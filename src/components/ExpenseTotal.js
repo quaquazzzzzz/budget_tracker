@@ -10,7 +10,7 @@ const ExpenseTotal = () => {
 
     return (
         <div className='alert alert-success p-4'> {/* Geändert zu alert-success */}
-            <span>Spent so far: £{total}</span>
+            <span>Ausgegeben: €{total}</span>
         </div>
     );
 };

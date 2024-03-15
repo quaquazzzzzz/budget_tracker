@@ -40,7 +40,7 @@ const AddExpenseForm = (props) => {
 					/>
 				</div>
 				<div class='col-sm col-lg-4'>
-					<label for='cost'>Cost</label>
+					<label for='cost'>Kosten</label>
 					<input
 						required='required'
 						type='number'
@@ -54,7 +54,7 @@ const AddExpenseForm = (props) => {
 			<div class='row mt-3'>
 				<div class='col-sm'>
 					<button type='submit' class='btn btn-primary'>
-						Save
+						Speichern
 					</button>
 				</div>
 			</div>
