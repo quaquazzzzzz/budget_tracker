@@ -13,7 +13,7 @@ const ExpenseList = () => {
 
 	const handleChange = (event) => {
 		const searchResults = expenses.filter((filteredExpense) =>
-			filteredExpense.name.toLowerCase().includes(event.target.value)
+			filteredExpense.name.toLowerCase().includes(event.target.value.toLowerCase())
 		);
 		setfilteredExpenses(searchResults);
 	};
@@ -22,13 +22,14 @@ const ExpenseList = () => {
 		<>
 			<input
 				type='text'
-				class='form-control mb-2 mr-sm-2'
+				className='form-control mb-2 mr-sm-2'
 				placeholder='Type to search...'
 				onChange={handleChange}
 			/>
-			<ul class='list-group mt-3 mb-3'>
+			<ul className='list-group mt-3 mb-3'>
 				{filteredExpenses.map((expense) => (
 					<ExpenseItem
+						key={expense.id} // Hinzugefügtes key Prop
 						id={expense.id}
 						name={expense.name}
 						cost={expense.cost}
