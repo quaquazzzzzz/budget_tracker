@@ -2,6 +2,7 @@
   "name": "budget-tracker",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://quaquazzzzzz.github.io/budget_tracker/",
   "dependencies": {
     "@testing-library/jest-dom": "^6.4.2",
     "@testing-library/react": "^14.2.1",
