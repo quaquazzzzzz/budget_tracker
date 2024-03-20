@@ -1,6 +1,6 @@
 # .github/workflows/cypress.yml
 name: Run Cypress Tests
-  run: npm run cypress:run
+  run: npm run cypress
 
 
 on:
