@@ -1,5 +1,6 @@
 # .github/workflows/cypress.yml
-name: Cypress Tests
+name: Run Cypress Tests
+run : npm run cypress : run
 
 on:
   push:
