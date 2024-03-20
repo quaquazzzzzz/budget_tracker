@@ -1,7 +1,4 @@
-# .github/workflows/cypress.yml
 name: Run Cypress Tests
-  run: npm run cypress : run
-
 
 on:
   push:
@@ -19,13 +16,13 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: 20.x
+          node-version: '20.x'
 
       - name: Install Dependencies
         run: npm install
 
       - name: Run Cypress Tests
-        run: npm run cypress:open
+        run: npm run cypress:run
 
       - name: Build Project
         run: npm run build
