@@ -1,4 +1,5 @@
-name: Node.js CI
+# .github/workflows/cypress.yml
+name: Cypress Tests
 
 on:
   push:
@@ -7,24 +8,29 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  cypress-run:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [20.x]
-
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm install
-    - run: npm run build
-    - run: npm test
-    - name: Deploy to GitHub Pages
-      uses: JamesIves/github-pages-deploy-action@4.1.4
-      with:
-        branch: gh-pages
-        folder: build
-        token: ${{ secrets.DEPLOY_TOKEN }}
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20.x
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Cypress Tests
+        run: npm run cypress:open
+
+      - name: Build Project
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: build
+          token: ${{ secrets.DEPLOY_TOKEN }}
