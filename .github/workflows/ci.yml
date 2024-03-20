@@ -1,29 +1,52 @@
-name: CI/CD Pipeline
+name: CI and Deployment
 
 on:
   push:
+    branches: [ main ]
+  pull_request:
     branches: [ main ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      # Weitere Schritte für das Bauen deines Projekts...
-  
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '20.x'
+      - run: npm install
+      - run: npm run build
+
   test:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Run Tests
-        run: npm test
-      # Weitere Schritte zum Testen...
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '20.x'
+      - run: npm install
+      - run: npm test
 
-  deploy:
+  cypress-run:
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '20.x'
+      - run: npm install
+      - run: npm run cypress:run
+
+  deploy:
+    needs: cypress-run
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
